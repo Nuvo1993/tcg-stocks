@@ -4,7 +4,7 @@ const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,jsx,ts,tsx,css,scss}", // Include the app directory
   ],
   theme: {
     extend: {
@@ -15,6 +15,7 @@ const config: Config = {
       },
     },
   },
+  darkMode: 'selector',
   plugins: [],
 };
 export default config;
