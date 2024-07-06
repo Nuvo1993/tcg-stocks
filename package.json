@@ -14,6 +14,8 @@
     "css-loader": "^7.1.2",
     "next": "14.2.4",
     "pokemontcgsdk": "^2.0.0",
+    "firebase": "^10.11.1",
+		"firebase-admin": "^12.1.0",
     "react": "^18",
     "react-dom": "^18",
     "sass": "^1.77.6",
