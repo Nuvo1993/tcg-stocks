@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { getAuthenticatedAppForUser } from "@/src/lib/firebase/serverApp";
-import Header from "@/src/components/Header";
+import Header from "@/src/app/components/Header";
 import "./globals.css";
 import pokemon from "pokemontcgsdk";
+import SearchBar from "./components/SearchBar";
 
 pokemon.configure({ apiKey: process.env.POKEMON_API_KEY });
 
@@ -27,28 +28,27 @@ export default async function RootLayout({
       </head>
       <body>
         <div className="flex">
-        <div className="sidebar w-64 h-screen bg-gray-800 text-white">
-            <nav className="flex flex-row">
-              <ul>
-                <li className="mb-4">
-                  <div>TCG Stocks</div>
-                </li>
-                <li className="mb-2">
-                  <a href="/">Home</a>
-                </li>
-                <li className="mb-2">
-                  <a href="/sets">TCG Sets</a>
-                </li>
-                <li className="mb-2">
-                  <a href="/news">News</a>
-                </li>
-              </ul>
+          <div className="sidebar w-64 h-screen bg-gray-800 text-white">
+            <nav className="">
+              <div className="mb-4 ">
+                <a href="/">TCG Stocks</a>
+              </div>
+              <div className="w-full mb-2 hover:ring-4">
+                <a href="/sets">Sets</a>
+              </div>
+              <div className="w-full mb-2 hover:ring-4">
+                <a href="/news">News</a>
+              </div>
             </nav>
-        </div>
-        <div>
-        <Header initialUser={currentUser?.toJSON()}/>
-        </div>
-        <div className="container mx-auto">{children}</div>
+          </div>
+          <div className="flex-1">
+            <div className="flex justify-end inset-x-0 top-0 bg-gray-800 z-10">
+              <Header initialUser={currentUser?.toJSON()} />
+            </div>
+            <div className="mt-4 p-4">
+              <div className="container mx-auto">{children}</div>
+            </div>
+          </div>
         </div>
       </body>
     </html>

@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images:{
-        domains: ['images.pokemontcg.io']
+        domains: ['images.pokemontcg.io', 'lh3.googleusercontent.com']
     }
 };
 

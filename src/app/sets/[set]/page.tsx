@@ -10,6 +10,8 @@ export default function CardSet({ params }: { params: { set: string } }) {
   const [cards, setCards] = useState<Card[]>([]);
   const [filteredCards, setFilteredCards] = useState<Card[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(0);
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -17,21 +19,35 @@ export default function CardSet({ params }: { params: { set: string } }) {
         const response: APIResponse<Card[]> = await pokemon.card.where({
           q: "set.id:" + params.set,
           pageSize: 50,
+          page: currentPage
         });
         setCards(response.data);
         setFilteredCards(response.data);
+        setTotalPages(Math.ceil(response.totalCount / 50)); // Assuming `response.totalCount` gives the total number of cards
       } catch (error) {
         console.error(error);
       }
     };
 
     fetchCards();
-  }, [params.set]);
+  }, [params.set, currentPage]);
 
   const handleSearch = (term: string) => {
     setSearchTerm(term);
     const filtered = cards.filter(card => card.name.toLowerCase().includes(term.toLowerCase()));
     setFilteredCards(filtered);
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
   const cardList = filteredCards.map((card) => (
@@ -46,6 +62,15 @@ export default function CardSet({ params }: { params: { set: string } }) {
       <div>
         <SearchBar onSearch={handleSearch} />
         <ul className="columns-3 ..."> {cardList}</ul>
+        <div className="pagination-controls">
+          <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+            Previous
+          </button>
+          <span>Page {currentPage} of {totalPages}</span>
+          <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+            Next
+          </button>
+        </div>
       </div>
     </>
   );
