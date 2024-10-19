@@ -17,18 +17,18 @@ function useUserSession(initialUser) {
 
   // Register the service worker that sends auth state back to server
   // The service worker is built with npm run build-service-worker
-  useEffect(() => {
-    if ("serviceWorker" in navigator) {
-      const serializedFirebaseConfig = encodeURIComponent(
-        JSON.stringify(firebaseConfig)
-      );
-      const serviceWorkerUrl = `/auth-service-worker.js?firebaseConfig=${serializedFirebaseConfig}`;
+  // useEffect(() => {
+  //   if ("serviceWorker" in navigator) {
+  //     const serializedFirebaseConfig = encodeURIComponent(
+  //       JSON.stringify(firebaseConfig)
+  //     );
+  //     const serviceWorkerUrl = `/auth-service-worker.mjs?firebaseConfig=${serializedFirebaseConfig}`;
 
-      navigator.serviceWorker
-        .register(serviceWorkerUrl)
-        .then((registration) => console.log("scope is: ", registration.scope));
-    }
-  }, []);
+  //     navigator.serviceWorker
+  //       .register(serviceWorkerUrl)
+  //       .then((registration) => console.log("scope is: ", registration.scope));
+  //   }
+  // }, []);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged((authUser) => {
