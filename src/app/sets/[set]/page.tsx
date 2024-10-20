@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import { Card, APIResponse } from "../../types/global";
 import SearchBar from "../../components/SearchBar";
 import DisplayCard from "../../components/DisplayCard";
+import Skeleton from "react-loading-skeleton";
+import 'react-loading-skeleton/dist/skeleton.css';
 
 export default function CardSet({ params }: { params: { set: string } }) {
   const [cards, setCards] = useState<Card[]>([]);
@@ -17,8 +19,8 @@ export default function CardSet({ params }: { params: { set: string } }) {
     const fetchCards = async () => {
       try {
         const response: APIResponse<Card[]> = await pokemon.card.where({
-          q: "set.id:" + params.set,
-          pageSize: 50,
+          q: "set.id:" + params.set,//set being the set name, confusing I know
+          pageSize: 30,
           page: currentPage
         });
         setCards(response.data);
@@ -56,22 +58,26 @@ export default function CardSet({ params }: { params: { set: string } }) {
       <a href={"/sets/" + params.set + "/" + card.id}>{card.name}</a>
     </li>
   ));
-
-  return (
-    <>
-      <div>
-        <SearchBar onSearch={handleSearch} />
-        <ul className="columns-3 ..."> {cardList}</ul>
-        <div className="pagination-controls">
-          <button onClick={handlePreviousPage} disabled={currentPage === 1}>
-            Previous
-          </button>
-          <span>Page {currentPage} of {totalPages}</span>
-          <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-            Next
-          </button>
+  if (cardList.length === 0) {
+    return <div>Loading...</div>;
+  } else if (cardList.length > 0 && Array.isArray(cardList)) {
+    return (
+      <>
+        <div>
+          <SearchBar onSearch={handleSearch} />
+          <ul className="columns-3 ..."> {cardList}</ul>
+          <div className="pagination-controls">
+            <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+              Previous
+            </button>
+            <span>Page {currentPage} of {totalPages}</span>
+            <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+              Next
+            </button>
+          </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
+
 }

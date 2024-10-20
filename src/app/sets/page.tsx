@@ -11,49 +11,20 @@ export default function CardSets() {
   const [sets, setSets] = useState<SetType[]>([]);
   const [filteredSets, setFilteredSets] = useState<SetType[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
+
+
   useEffect(() => {
     if (sets.length === 0) {
       pokemon.set
         .all()
         .then((set: SetType[]) => {
-          console.log("Setting set3: ", set);
           setSets(set);
           setFilteredSets(set);
         })
         .catch((error: Error) => {
-          console.log("Setting set4: ", error);
           setSets([]);
         });
     }
-
-    // if (searchTerm) {
-    //   console.log("Setting set: ", searchTerm);
-    //   pokemon.set
-    //     .where({ q: "name:" + searchTerm.toLowerCase() + "*", pageSize: 10 })
-    //     .then((set: APIResponse<SetType[]>) => {
-    //       console.log("Setting set1: ", set);
-    //       console.log("Set length", set.data.length);
-    //       if (set.data.length === 0) {
-    //         setFilteredSets([]);
-    //       }
-    //       setFilteredSets(set.data);
-    //     })
-    //     .catch((error: Error) => {
-    //       console.log("Setting set2: ", error);
-    //       setFilteredSets([]);
-    //     });
-    // } else {
-    //   pokemon.set
-    //     .all()
-    //     .then((set: SetType[]) => {
-    //       console.log("Setting set3: ", set);
-    //       setFilteredSets(set);
-    //     })
-    //     .catch((error: Error) => {
-    //       console.log("Setting set4: ", error);
-    //       setFilteredSets([]);
-    //     });
-    // }
   }, []);
 
   const handleSearch = (term: string) => {
@@ -65,6 +36,7 @@ export default function CardSets() {
   };
 
   if (sets.length === 0) {
+    console.log("Set length:", sets.length);
     return <div>Loading...</div>;
   } else if (sets.length > 0 && Array.isArray(sets)) {
     const setList = filteredSets.map((sets) => (

@@ -12,12 +12,13 @@
   "dependencies": {
     "bourbon": "^7.3.0",
     "css-loader": "^7.1.2",
+    "firebase": "^10.11.1",
+    "firebase-admin": "^12.1.0",
     "next": "14.2.4",
     "pokemontcgsdk": "^2.0.0",
-    "firebase": "^10.11.1",
-		"firebase-admin": "^12.1.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-loading-skeleton": "^3.5.0",
     "sass": "^1.77.6",
     "sass-loader": "^14.2.1",
     "style-loader": "^4.0.0"

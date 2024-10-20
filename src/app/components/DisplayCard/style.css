@@ -5,3 +5,7 @@
   width: auto;
   height: auto;
 }
+
+.card-container img {
+  transition: opacity 0.3s ease-in-out;
+}
