@@ -5,6 +5,7 @@ import Header from "@/src/app/components/Header";
 import "./globals.css";
 import pokemon from "pokemontcgsdk";
 import SearchBar from "./components/SearchBar";
+import { UserProvider } from "@/src/app/Context/userContext"
 
 pokemon.configure({ apiKey: process.env.POKEMON_API_KEY });
 
@@ -27,6 +28,7 @@ export default async function RootLayout({
         <title>Next.js</title>
       </head>
       <body>
+      <UserProvider>
         <div className="flex">
           <div className="sidebar w-64 h-screen bg-gray-800 text-white">
             <nav className="">
@@ -43,13 +45,14 @@ export default async function RootLayout({
           </div>
           <div className="flex-1">
             <div className="flex justify-end inset-x-0 top-0 bg-gray-800 z-10">
-              <Header initialUser={currentUser?.toJSON()} />
+              <Header/>
             </div>
             <div className="mt-4 p-4">
               <div className="container mx-auto">{children}</div>
             </div>
           </div>
         </div>
+        </UserProvider>
       </body>
     </html>
   );

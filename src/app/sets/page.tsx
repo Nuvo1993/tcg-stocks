@@ -12,7 +12,6 @@ export default function CardSets() {
   const [filteredSets, setFilteredSets] = useState<SetType[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-
   useEffect(() => {
     if (sets.length === 0) {
       pokemon.set
@@ -40,7 +39,7 @@ export default function CardSets() {
     return <div>Loading...</div>;
   } else if (sets.length > 0 && Array.isArray(sets)) {
     const setList = filteredSets.map((sets) => (
-      <li key={sets.id}>
+      <div key={sets.id}>
         <a href={"/sets/" + sets.id}>
           {" "}
           <Image
@@ -51,15 +50,16 @@ export default function CardSets() {
             style={{ objectFit: "contain" }}
           />
         </a>
-      </li>
+      </div>
     ));
 
     return (
       <>
         <SearchBar onSearch={handleSearch} />
-        <div className="columns-3 hover:columns-3">
+        {/* <div className="columns-3 hover:columns-3">
           <ul>{setList}</ul>
-        </div>
+        </div> */}
+        <div className="grid grid-cols-4 gap-4">{setList}</div>
       </>
     );
   }

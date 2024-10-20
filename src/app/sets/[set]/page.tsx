@@ -53,10 +53,10 @@ export default function CardSet({ params }: { params: { set: string } }) {
   };
 
   const cardList = filteredCards.map((card) => (
-    <li key={card.id}>
+    <div key={card.id}>
       <DisplayCard card={card} alt={card.name} />
       <a href={"/sets/" + params.set + "/" + card.id}>{card.name}</a>
-    </li>
+    </div>
   ));
   if (cardList.length === 0) {
     return <div>Loading...</div>;
@@ -65,7 +65,7 @@ export default function CardSet({ params }: { params: { set: string } }) {
       <>
         <div>
           <SearchBar onSearch={handleSearch} />
-          <ul className="columns-3 ..."> {cardList}</ul>
+          <div className="grid grid-cols-4 gap-4">{cardList}</div>
           <div className="pagination-controls">
             <button onClick={handlePreviousPage} disabled={currentPage === 1}>
               Previous
