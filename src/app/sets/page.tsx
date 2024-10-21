@@ -14,6 +14,7 @@ export default function CardSets() {
 
   useEffect(() => {
     if (sets.length === 0) {
+      console.log("pullingData with useEffect")
       pokemon.set
         .all()
         .then((set: SetType[]) => {
@@ -59,7 +60,7 @@ export default function CardSets() {
         {/* <div className="columns-3 hover:columns-3">
           <ul>{setList}</ul>
         </div> */}
-        <div className="grid grid-cols-4 gap-4">{setList}</div>
+        <div className="grid grid-cols-5 gap-4">{setList}</div>
       </>
     );
   }

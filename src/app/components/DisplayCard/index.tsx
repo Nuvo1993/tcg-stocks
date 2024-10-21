@@ -14,9 +14,11 @@ export default function DisplayCard({
 }) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
+  console.log(card);
   return (
     <>
-      <div className="max-w-40 card-container">
+    <div className="flex 1 1">
+      <div className="max-w-40 card-container mb-4">
       {!imageLoaded && <Skeleton height={250} width={180} />}
         <Image
           key={card.images.large}
@@ -33,6 +35,12 @@ export default function DisplayCard({
           }}
           style={{ display: imageLoaded ? "block" : "none" }}
         />
+      </div>
+      <div className="grid-cols-1 ml-2 mb-2">
+        <div className="text-base font-bold">{card.name}</div>
+        <div>{card.set.name}</div>
+        <div>${card.cardmarket.prices.averageSellPrice}</div>
+      </div>
       </div>
     </>
   );

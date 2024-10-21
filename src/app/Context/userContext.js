@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { createContext, useContext, useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
@@ -21,8 +21,11 @@ export function UserProvider({ children }) {
     return () => unsubscribe();
   }, []);
 
+  // Return null while loading to avoid unnecessary renders
+  if (loading) return null;
+
   return (
-    <UserContext.Provider value={{ user, loading }}>
+    <UserContext.Provider value={{ user }}>
       {children}
     </UserContext.Provider>
   );

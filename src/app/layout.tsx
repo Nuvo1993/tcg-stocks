@@ -5,7 +5,7 @@ import Header from "@/src/app/components/Header";
 import "./globals.css";
 import pokemon from "pokemontcgsdk";
 import SearchBar from "./components/SearchBar";
-import { UserProvider } from "@/src/app/Context/userContext"
+import { UserProvider } from "@/src/app/Context/userContext";
 
 pokemon.configure({ apiKey: process.env.POKEMON_API_KEY });
 
@@ -28,30 +28,17 @@ export default async function RootLayout({
         <title>Next.js</title>
       </head>
       <body>
-      <UserProvider>
-        <div className="flex">
-          <div className="sidebar w-64 h-screen bg-gray-800 text-white">
-            <nav className="">
-              <div className="mb-4 ">
-                <a href="/">TCG Stocks</a>
+        <UserProvider>
+          <div className="m-auto max-w-screen-2xl">
+            <div className="">
+              <div className="inset-x-0 top-0 bg-gray-800 z-10">
+                <Header />
               </div>
-              <div className="w-full mb-2 hover:ring-4">
-                <a href="/sets">Sets</a>
+              <div className="mt-4 p-4">
+                <div className="container mx-auto">{children}</div>
               </div>
-              <div className="w-full mb-2 hover:ring-4">
-                <a href="/news">News</a>
-              </div>
-            </nav>
-          </div>
-          <div className="flex-1">
-            <div className="flex justify-end inset-x-0 top-0 bg-gray-800 z-10">
-              <Header/>
-            </div>
-            <div className="mt-4 p-4">
-              <div className="container mx-auto">{children}</div>
             </div>
           </div>
-        </div>
         </UserProvider>
       </body>
     </html>
