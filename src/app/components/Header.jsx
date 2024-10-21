@@ -31,7 +31,7 @@ export default function Header() {
             ></Image>
           </a>
         </div>
-        <div className="flex justify-start grow max-w-screen-md">
+        <div className="flex justify-start max-w-screen-md">
  
         <div className="ml-4 mb-2 hover:ring-4">
           <a href="/sets" className="">
@@ -41,8 +41,11 @@ export default function Header() {
         <div className="ml-4 mb-2 hover:ring-4">
           <a href="/news">News</a>
         </div>
+        <div className="ml-4 mb-2 hover:ring-4">
+          <a href="/portfolio">Portfolio</a>
         </div>
-        <div className="flex justify-end grow">
+        </div>
+        <div className="flex justify-end grow mr-2">
           {user ? (
             <>
               <div className="profile flex 1 1">
@@ -57,7 +60,7 @@ export default function Header() {
                 </div>
                 <div>
                   <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md"
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md ml-2"
                     onClick={handleSignOut}
                   >
                     Sign Out

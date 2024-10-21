@@ -62,30 +62,25 @@ export default function CardSet({ params }: { params: { set: string } }) {
       </a>
     </div>
   ));
-  if (cardList.length === 0) {
-    return <div>Loading...</div>;
-  } else if (cardList.length > 0 && Array.isArray(cardList)) {
-    return (
-      <>
-          <SearchBar onSearch={handleSearch} />
-          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 grid-flow-row justify-items-start">
-            {cardList}
-          </div>
-          <div className="pagination-controls">
-            <button onClick={handlePreviousPage} disabled={currentPage === 1}>
-              Previous
-            </button>
-            <span>
-              Page {currentPage} of {totalPages}
-            </span>
-            <button
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages}
-            >
-              Next
-            </button>
-          </div>
-      </>
-    );
-  }
+
+  return (
+    <>
+      <SearchBar onSearch={handleSearch} />
+      <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 grid-flow-row justify-items-start">
+        {cardList.length === 0 ? <div>No results found</div> : cardList}
+
+      </div>
+      <div className="pagination-controls">
+        <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+          Previous
+        </button>
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
+        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+          Next
+        </button>
+      </div>
+    </>
+  );
 }
