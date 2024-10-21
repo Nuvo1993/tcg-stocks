@@ -39,7 +39,7 @@ export default function CardSets() {
     return <div>Loading...</div>;
   } else if (sets.length > 0 && Array.isArray(sets)) {
     const setList = filteredSets.map((sets) => (
-      <div key={sets.id}>
+      <div key={sets.id} className="flex justify-center items-center">
         <a href={"/sets/" + sets.id}>
           {" "}
           <Image

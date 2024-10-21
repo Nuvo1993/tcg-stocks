@@ -65,7 +65,7 @@ export default function CardSet({ params }: { params: { set: string } }) {
       <>
         <div>
           <SearchBar onSearch={handleSearch} />
-          <div className="grid grid-cols-4 gap-4">{cardList}</div>
+          <div className="grid grid-cols-4 gap-4 content-center ...">{cardList}</div>
           <div className="pagination-controls">
             <button onClick={handlePreviousPage} disabled={currentPage === 1}>
               Previous
