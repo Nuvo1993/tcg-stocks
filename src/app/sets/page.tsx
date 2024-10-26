@@ -15,7 +15,7 @@ export default function CardSets() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 25;
+  const pageSize = 20;
 
   const onPageChange = (page: number) => {
     setCurrentPage(page);
@@ -71,19 +71,24 @@ export default function CardSets() {
     return (
       <>
         <SearchBar onSearch={handleSearch} />
-        <div className="grid grid-cols-5">
+        <Pagination
+          items={sets.length} // 100
+          currentPage={currentPage} // 1
+          pageSize={pageSize} // 10
+          onPageChange={onPageChange}
+        />
+        <div className="grid grid-cols-5 gap-4">
           {paginatedSets.map((item: any) => {
             console.log(item);
             return (
               <div key={item.id}>
-                <div className="w-full max-w-xs h-48 relative">
+                <div className="w-full max-w-xs h-48 relative shadow-md hover:shadow-xl">
                   <a href={"/sets/" + item.id}>
                     {" "}
                     <Image
                       src={item.images.logo}
                       alt={item.name}
-                      layout="fill"
-                      sizes="(max-width: 768px)"
+                      fill={true}
                       style={{ objectFit: "contain" }}
                     />
                   </a>

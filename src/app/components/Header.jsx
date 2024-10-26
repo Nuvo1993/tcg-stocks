@@ -5,7 +5,7 @@ import { signInWithGoogle, signOut } from "@/src/lib/firebase/auth.js";
 import { useUser } from "@/src/app/Context/userContext"; // Use the UserContext
 
 export default function Header() {
-  const { user, loading } = useUser(); // Access the user and loading state from the context
+  const { user, loadingUser } = useUser(); // Access the user and loading state from the context
 
   const handleSignOut = (event) => {
     event.preventDefault();
