@@ -57,10 +57,9 @@ export default function CardSet({ params }: { params: { set: string } }) {
 
   const cardList = filteredCards.map((card) => (
     <div key={card.id}>
-      <a href={"/sets/" + params.set + "/" + card.id}>
         {" "}
         <DisplayCard card={card} alt={card.name} />
-      </a>
+
     </div>
   ));
 

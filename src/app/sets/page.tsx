@@ -59,20 +59,20 @@ export default function CardSets() {
       </div>
     );
   } else if (sets.length > 0 && Array.isArray(sets)) {
-    const setList = filteredSets.map((sets) => (
-      <div key={sets.id} className="flex justify-center items-center">
-        <a href={"/sets/" + sets.id}>
-          {" "}
-          <Image
-            src={sets.images.logo}
-            alt={sets.name}
-            width={20}
-            height={10}
-            style={{ objectFit: "contain" }}
-          />
-        </a>
-      </div>
-    ));
+    // const setList = filteredSets.map((sets) => (
+    //   <div key={sets.id} className="flex justify-center items-center">
+    //     <a href={"/sets/" + sets.id}>
+    //       {" "}
+    //       <Image
+    //         src={sets.images.logo}
+    //         alt={sets.name}
+    //         width={20}
+    //         height={10}
+    //         style={{ objectFit: "contain" }}
+    //       />
+    //     </a>
+    //   </div>
+    // ));
     return (
       <>
         <SearchBar onSearch={handleSearch} />
@@ -95,6 +95,7 @@ export default function CardSets() {
                       alt={item.name}
                       fill={true}
                       style={{ objectFit: "contain" }}
+                      className="p-8"
                     />
                   </a>
                 </div>

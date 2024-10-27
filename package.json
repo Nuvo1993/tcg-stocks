@@ -10,6 +10,7 @@
     "postbuild": "purgecss --css .next/static/css/*.css --content './src/app/**/*.{html,js,jsx,ts,tsx}' './components/**/*.{html,js,jsx,ts,tsx}' './pages/**/*.{html,js,jsx,ts,tsx}' .next/server/**/*.html .next/static/**/*.js --output .next/static/css"
   },
   "dependencies": {
+    "@heroicons/react": "^2.1.5",
     "bourbon": "^7.3.0",
     "css-loader": "^7.1.2",
     "firebase": "^10.11.1",
