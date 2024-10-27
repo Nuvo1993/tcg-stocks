@@ -7,6 +7,7 @@ import SearchBar from "../../components/SearchBar";
 import DisplayCard from "../../components/DisplayCard";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import Loader from "../../components/Utility/Loader";
 
 export default function CardSet({ params }: { params: { set: string } }) {
   const [cards, setCards] = useState<Card[]>([]);
@@ -67,19 +68,29 @@ export default function CardSet({ params }: { params: { set: string } }) {
     <>
       <SearchBar onSearch={handleSearch} />
       <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 grid-flow-row justify-items-start">
-        {cardList.length === 0 ? <div>No results found</div> : cardList}
-
-      </div>
-      <div className="pagination-controls">
-        <button onClick={handlePreviousPage} disabled={currentPage === 1}>
-          Previous
-        </button>
-        <span>
-          Page {currentPage} of {totalPages}
-        </span>
-        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-          Next
-        </button>
+        {cardList.length === 0 ? (
+          <div className="flex justify-center items-center h-screen mb-4">
+            <Loader></Loader>
+          </div>
+        ) : (
+          <>
+            {cardList}
+            <div className="pagination-controls">
+              <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+                Previous
+              </button>
+              <span>
+                Page {currentPage} of {totalPages}
+              </span>
+              <button
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
+              >
+                Next
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </>
   );

@@ -20,7 +20,7 @@ export default function Header() {
   return (
     <nav className="">
       <div className="flex flex-wrap text-lg items-center text-white ">
-      <div className="ml-2 mb-2">
+        <div className="ml-2 mb-2">
           <a href="/">
             {" "}
             <Image
@@ -32,31 +32,33 @@ export default function Header() {
           </a>
         </div>
         <div className="flex justify-start max-w-screen-md">
- 
-        <div className="ml-4 mb-2 hover:ring-4">
-          <a href="/sets" className="">
-            Sets
-          </a>
-        </div>
-        <div className="ml-4 mb-2 hover:ring-4">
-          <a href="/news">News</a>
-        </div>
-        <div className="ml-4 mb-2 hover:ring-4">
-          <a href="/portfolio">Portfolio</a>
-        </div>
+          <div className="ml-4 mb-2 hover:ring-4">
+            <a href="/sets" className="">
+              Sets
+            </a>
+          </div>
+          <div className="ml-4 mb-2 hover:ring-4">
+            <a href="/news">News</a>
+          </div>
+          <div className="ml-4 mb-2 hover:ring-4">
+            <a href="/profile">Profile</a>
+          </div>
         </div>
         <div className="flex justify-end grow mr-2">
           {user ? (
             <>
               <div className="profile flex 1 1">
                 <div>
-                  <Image
-                    src={user.photoURL || "/profile.svg"}
-                    alt={user.email}
-                    width={40}
-                    height={40}
-                    className="rounded-full"
-                  />
+                  <a href="/profile">
+                    {" "}
+                    <Image
+                      src={user.photoURL || "/profile.svg"}
+                      alt={user.email}
+                      width={40}
+                      height={40}
+                      className="rounded-full"
+                    />
+                  </a>
                 </div>
                 <div>
                   <button

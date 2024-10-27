@@ -8,6 +8,7 @@ import { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import { paginate } from "../helpers/paginate";
 import Pagination from "../components/Utility/Pagination";
+import Loader from "../components/Utility/Loader";
 
 export default function CardSets() {
   const [sets, setSets] = useState<SetType[]>([]);
@@ -52,7 +53,11 @@ export default function CardSets() {
 
   if (sets.length === 0) {
     console.log("Set length:", sets.length);
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen mb-4">
+      <Loader></Loader>
+      </div>
+    );
   } else if (sets.length > 0 && Array.isArray(sets)) {
     const setList = filteredSets.map((sets) => (
       <div key={sets.id} className="flex justify-center items-center">
