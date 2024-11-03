@@ -19,7 +19,6 @@ import { getAuth } from "firebase/auth";
 
 import { db } from "@/src/lib/firebase/clientApp";
 
-//TODO: Create addCardToCollection
 
 export async function addCardToUserCollection(cardData) {
   const auth = getAuth();
@@ -30,7 +29,6 @@ export async function addCardToUserCollection(cardData) {
   await setDoc(uniqueCardRef, cardData);
 }
 
-//TODO: Create removeCardFromCollection
 export async function removeCardFromUserCollection(cardId) {
   const auth = getAuth();
   const user = auth.currentUser;
@@ -42,8 +40,11 @@ export async function removeCardFromUserCollection(cardId) {
 
 
 //TODO: Create addCardToWishlist
-export async function addCardToWishlist(userId, cardData) {
-  const cardsRef = collection(db, `wishlists/${userId}/cards`);
+export async function addCardToWishlist(cardData) {
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  const cardsRef = collection(db, `wishlists/${user.uid}/cards`);
   const uniqueCardRef = doc(cardsRef); // Generates a unique ID for the card
   await setDoc(uniqueCardRef, cardData);
 }

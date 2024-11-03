@@ -34,7 +34,6 @@ export default function Profile() {
 
   return (
     <div>
-      <h1>Your Collection</h1>
       {loadingUser ? (
         <p>Loading...</p>
       ) : collection ? (
@@ -78,7 +77,19 @@ export default function Profile() {
           })}
         </>
       ) : (
-        <p>No collection found for {user.displayName}</p>
+        <>
+          {user ? (
+            <div>
+              <h1>Welcome, {user.displayName}</h1>
+              <p>Here you can view your collection of cards</p>
+            </div>
+          ) : (
+            <div>
+              <h1>Welcome, guest</h1>
+              <p>Sign in to view your collection of cards</p>
+            </div>
+          )}
+        </>
       )}
     </div>
   );

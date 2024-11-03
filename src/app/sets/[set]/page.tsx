@@ -56,10 +56,9 @@ export default function CardSet({ params }: { params: { set: string } }) {
   };
 
   const cardList = filteredCards.map((card) => (
-    <div key={card.id}>
+    <div key={card.id} className="mt-4">
         {" "}
         <DisplayCard card={card} alt={card.name} />
-
     </div>
   ));
 
