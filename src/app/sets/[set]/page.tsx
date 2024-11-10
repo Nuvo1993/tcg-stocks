@@ -57,21 +57,21 @@ export default function CardSet({ params }: { params: { set: string } }) {
 
   const cardList = filteredCards.map((card) => (
     <div key={card.id} className="mt-4">
-        {" "}
-        <DisplayCard card={card} alt={card.name} />
+      {" "}
+      <DisplayCard card={card} alt={card.name} />
     </div>
   ));
 
   return (
     <>
       <SearchBar onSearch={handleSearch} />
-      <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 grid-flow-row justify-items-start">
+      <div>
         {cardList.length === 0 ? (
           <div className="flex justify-center items-center h-screen mb-4">
             <Loader></Loader>
           </div>
         ) : (
-          <>
+          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 grid-flow-row justify-items-start">
             {cardList}
             <div className="pagination-controls">
               <button onClick={handlePreviousPage} disabled={currentPage === 1}>
@@ -87,7 +87,7 @@ export default function CardSet({ params }: { params: { set: string } }) {
                 Next
               </button>
             </div>
-          </>
+          </div>
         )}
       </div>
     </>

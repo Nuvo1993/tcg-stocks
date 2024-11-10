@@ -52,20 +52,26 @@ export async function addCardToWishlist(cardData) {
 
 
 //TODO: Create removeCardFromWishlist
-export async function removeCardFromWishlist(userId, cardId) {
-  const cardRef = doc(db, `wishlists/${userId}/cards/${cardId}`);
+export async function removeCardFromWishlist(cardId) {
+	const auth = getAuth();
+	const user = auth.currentUser;
+	console.log("Removing card from wishlist with ID:", cardId);
+
+  const cardRef = doc(db, `wishlists/${user.uid}/cards/${cardId}`);
   await deleteDoc(cardRef);
 }
 
 
 //TODO: Create getUsersWishList
-export async function getUsersWishList(userId) {
+export async function getUsersWishList() {
   try {
-    const cardsRef = collection(db, `wishlists/${userId}/cards`);
+	const auth = getAuth();
+	const user = auth.currentUser;
+    const cardsRef = collection(db, `wishlists/${user.uid}/cards`);
     const cardDocs = await getDocs(cardsRef);
     if (!cardDocs.empty) {
       // Directly access document data using .data()
-      return cardDocs.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      return cardDocs.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
     } else {
       console.log("No such document!");
       return null;
